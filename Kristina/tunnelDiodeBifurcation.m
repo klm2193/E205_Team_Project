@@ -15,8 +15,13 @@ tspan = 15e-8;
 t_output=[0:1e-10:tspan];
 Vin = Vmax * (t_output < tpulse) + 0 * (t_output > tpulse);
 
+x1_starVals = [];
+
 for t = 1:length(Vin)
     eqn1 = (x2 - Vin(t))/C;
     eqn2 = (Vin(t) - x2*R-x1)/L;
     
+    [x1_star, x2_star] = solve([eqn1, eqn2]);
+    
+    x1_starVals = [x1_starVals x1_star];
 end
