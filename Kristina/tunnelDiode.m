@@ -3,11 +3,11 @@ R = 1.5e3; % Ohm
 C = 2e-12; % F
 L = 5e-6; % H
 
-tpulse = 1e-9; % s
+tpulse = 1e-7; % s
 Vmax = 1; % V
 
-tspan = 15e-9;
-t_output=[0:3e-10:tspan];
+tspan = 15e-8;
+t_output=[0:1e-10:tspan];
 % syms x1 x2
 
 %t = [0:0.001:5];
@@ -34,5 +34,6 @@ t_output=[0:3e-10:tspan];
 %     VinVals = [VinVals Vin]
 % end
 
-[t, x, y] = sim('tunneldiode_sim', t_output);%'tunnelDiodeModel', t_output);
+[t, x, y] = sim('tunnelDiodeModel', t_output);
 plot(t, y)
+legend('V', 'I')
