@@ -174,7 +174,7 @@ assignin('base','R',R);
 assignin('base','C',C);
 assignin('base','L',L);
 
-tspan=50;
+tspan=1.5*tpulse+20*(tpulse<40);
 tstep=0.01;
 t_output=[0:tstep:tspan];
 options=simset('Solver','ode45');
@@ -230,7 +230,7 @@ set(handles.tpulse, 'String', handles.metricdata.tpulse);
 set(handles.Vmax,  'String', handles.metricdata.Vmax);
 % set(handles.mass, 'String', 0);
 
-set(handles.unitgroup, 'SelectedObject', handles.english);
+% set(handles.unitgroup, 'SelectedObject', handles.english);
 
 % Update handles structure
 guidata(handles.figure1, handles);
