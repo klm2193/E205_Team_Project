@@ -22,7 +22,7 @@ function varargout = tunnelDiodeGUI(varargin)
 
 % Edit the above text to modify the response to help tunnelDiodeGUI
 
-% Last Modified by GUIDE v2.5 01-Nov-2014 23:31:19
+% Last Modified by GUIDE v2.5 01-Nov-2014 22:07:52
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -119,16 +119,10 @@ axis(1*[0 2 0 1])
 R = 1.5; % kOhm
 C = 2; % pF
 L = 5; % uH
-%Vmax = get(handles.Vmax, 'String');
-%Vmax = str2double(Vmax);
-%tpulse = get(handles.tpulse, 'String');
-%tpulse = str2double(tpulse);
-
-Vmax = get(handles.VmaxSlider, 'Value');
-tpulse = get(handles.tpulseSlider, 'Value');
-
-handles.Vmax = double2str(Vmax);
-handles.tpulse = double2str(tpulse);
+Vmax = get(handles.Vmax, 'String');
+Vmax = str2double(Vmax);
+tpulse = get(handles.tpulse, 'String');
+tpulse = str2double(tpulse);
 
 % send variables to workspace
 assignin('base', 'Vmax', Vmax);
@@ -192,48 +186,4 @@ function tpulse_CreateFcn(hObject, eventdata, handles)
 %       See ISPC and COMPUTER.
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
-end
-
-
-% --- Executes on slider movement.
-function VmaxSlider_Callback(hObject, eventdata, handles)
-% hObject    handle to VmaxSlider (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'Value') returns position of slider
-%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-
-
-% --- Executes during object creation, after setting all properties.
-function VmaxSlider_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to VmaxSlider (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: slider controls usually have a light gray background.
-if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor',[.9 .9 .9]);
-end
-
-
-% --- Executes on slider movement.
-function tpulseSlider_Callback(hObject, eventdata, handles)
-% hObject    handle to tpulseSlider (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-% Hints: get(hObject,'Value') returns position of slider
-%        get(hObject,'Min') and get(hObject,'Max') to determine range of slider
-
-
-% --- Executes during object creation, after setting all properties.
-function tpulseSlider_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to tpulseSlider (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    empty - handles not created until after all CreateFcns called
-
-% Hint: slider controls usually have a light gray background.
-if isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
-    set(hObject,'BackgroundColor',[.9 .9 .9]);
 end
