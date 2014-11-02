@@ -95,14 +95,14 @@ function tpulse_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of tpulse as text
 %        str2double(get(hObject,'String')) returns contents of tpulse as a double
-tpulse = str2double(get(hObject, 'String'));
-if isnan(tpulse)
+density = str2double(get(hObject, 'String'));
+if isnan(density)
     set(hObject, 'String', 0);
     errordlg('Input must be a number','Error');
 end
 
 % Save the new tpulse value
-handles.metricdata.tpulse = tpulse;
+handles.metricdata.density = density;
 guidata(hObject,handles)
 
 % --- Executes during object creation, after setting all properties.
@@ -142,9 +142,8 @@ function calculate_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% ARCHAIC FROM ORIGINAL TEMPLATE
-% mass = handles.metricdata.tpulse * handles.metricdata.Vmax;
-% set(handles.mass, 'String', mass);
+mass = handles.metricdata.density * handles.metricdata.Vmax;
+set(handles.mass, 'String', mass);
 
 % --- Executes on button press in reset.
 function reset_Callback(hObject, eventdata, handles)
@@ -179,19 +178,18 @@ if isfield(handles, 'metricdata') && ~isreset
     return;
 end
 
-handles.metricdata.tpulse = 0;
+handles.metricdata.density = 0;
 handles.metricdata.Vmax  = 0;
 
-set(handles.tpulse, 'String', handles.metricdata.tpulse);
+set(handles.tpulse, 'String', handles.metricdata.density);
 set(handles.Vmax,  'String', handles.metricdata.Vmax);
-% set(handles.mass, 'String', 0);
+set(handles.mass, 'String', 0);
 
 set(handles.unitgroup, 'SelectedObject', handles.english);
 
-% ORIGINAL TEMPLATE
-% set(handles.text4, 'String', 'lb/cu.in');
-% set(handles.text5, 'String', 'cu.in');
-% set(handles.text6, 'String', 'lb');
+set(handles.text4, 'String', 'lb/cu.in');
+set(handles.text5, 'String', 'cu.in');
+set(handles.text6, 'String', 'lb');
 
 % Update handles structure
 guidata(handles.figure1, handles);
