@@ -62,6 +62,7 @@ axes(handles.axes1);
 title('Output Voltage vs. Time')
 xlabel('t (ns)');
 ylabel('Vout (V)');
+axis(3*[-1 1 -1 1])
 
 axes(handles.axes2);
 title('Bifurcation Plot of x_1^* (Vout) vs. Vin')
@@ -104,6 +105,17 @@ cla;
 % Update handles structure
 guidata(hObject, handles);
 
+% define variables
+R = 1.5; % kOhm
+C = 2; % pF
+L = 5; % uH
+
+tpulse = 40; % ns
+Vmax = 1; % V
+
+tspan = 50; % ns
+t_output=[0:0.01:tspan];
+
 % plot bifurcation plot
 VinValues = importdata('VinValues.mat');
 x1Values = importdata('x1Values.mat');
@@ -115,32 +127,9 @@ xlabel('Vin (V)');
 ylabel('x_1^*');
 axis(1*[0 2 0 1])
 
-% get input parameters
-R = 1.5; % kOhm
-C = 2; % pF
-L = 5; % uH
-Vmax = get(handles.Vmax, 'String');
-Vmax = str2double(Vmax);
-tpulse = get(handles.tpulse, 'String');
-tpulse = str2double(tpulse);
-
-% send variables to workspace
-assignin('base', 'Vmax', Vmax);
-assignin('base', 'tpulse', tpulse);
-assignin('base', 'R', R);
-assignin('base', 'L', L);
-assignin('base', 'C', C);
-
-tspan = tpulse*1.5; % ns
-t_output=[0:0.01:tspan];
 [t, x, y] = sim('tunnelDiodeModel', t_output);
-
-% plot Vout
-axes(handles.axes1);
-plot(t, y(:,1))
-title('Output Voltage vs. Time')
-xlabel('t (ns)');
-ylabel('Vout (V)');
+plot(t, y)
+legend('V', 'I')
 
 
 
