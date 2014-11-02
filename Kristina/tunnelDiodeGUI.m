@@ -22,7 +22,7 @@ function varargout = tunnelDiodeGUI(varargin)
 
 % Edit the above text to modify the response to help tunnelDiodeGUI
 
-% Last Modified by GUIDE v2.5 01-Nov-2014 21:57:38
+% Last Modified by GUIDE v2.5 01-Nov-2014 22:07:52
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -71,3 +71,56 @@ function varargout = tunnelDiodeGUI_OutputFcn(hObject, eventdata, handles)
 
 % Get default command line output from handles structure
 varargout{1} = handles.output;
+
+
+% --- Executes on button press in pushbutton1.
+function pushbutton1_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+
+function Vmax_Callback(hObject, eventdata, handles)
+% hObject    handle to Vmax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of Vmax as text
+%        str2double(get(hObject,'String')) returns contents of Vmax as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function Vmax_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to Vmax (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function tpulse_Callback(hObject, eventdata, handles)
+% hObject    handle to tpulse (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of tpulse as text
+%        str2double(get(hObject,'String')) returns contents of tpulse as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function tpulse_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to tpulse (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
