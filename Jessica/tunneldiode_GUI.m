@@ -59,6 +59,22 @@ guidata(hObject, handles);
 
 initialize_gui(hObject, handles, false);
 
+
+% PLOTTING BIFURCATION PLOT
+load Vin;
+load Vout_star;
+axes(handles.axes1)
+plot(Vin_vec,x1star_vec,'bo')
+xlabel('Input voltage (V)')
+ylabel('Fixed points for output voltage')
+title('Bifurcation plot')
+
+axes(handles.axes2)
+xlabel('Time (ns)')
+ylabel('Voltage (V)')
+title('Output voltage plot')
+
+
 % UIWAIT makes tunneldiode_GUI wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
@@ -142,9 +158,36 @@ function calculate_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% ARCHAIC FROM ORIGINAL TEMPLATE
-% mass = handles.metricdata.tpulse * handles.metricdata.Vmax;
-% set(handles.mass, 'String', mass);
+% Plotting the Phase portrait with Simulink
+tpulse=get(handles.tpulse,'String');
+tpulse=str2double(tpulse);
+Vmax=get(handles.Vmax,'String');
+Vmax=str2double(Vmax);
+assignin('base','tpulse',tpulse);
+assignin('base','Vmax',Vmax);
+
+% GIVEN VALUES
+R= 1.5; % kohms
+C= 2;   % picofarads
+L= 5;   % microhenries
+assignin('base','R',R);
+assignin('base','C',C);
+assignin('base','L',L);
+
+tspan=50;
+tstep=0.01;
+t_output=[0:tstep:tspan];
+options=simset('Solver','ode45');
+
+[t, y]=sim('tunneldiode_sim',t_output);
+Vout= y(:,1);
+I_L= y(:,2);
+plot(t,Vout)
+xlabel('Time (ns)')
+ylabel('Voltage (V)')
+title('Output voltage plot')
+
+
 
 % --- Executes on button press in reset.
 function reset_Callback(hObject, eventdata, handles)
@@ -153,6 +196,7 @@ function reset_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 initialize_gui(gcbf, handles, true);
+cla
 
 % --- Executes when selected object changed in unitgroup.
 function unitgroup_SelectionChangeFcn(hObject, eventdata, handles)
@@ -179,19 +223,14 @@ if isfield(handles, 'metricdata') && ~isreset
     return;
 end
 
-handles.metricdata.tpulse = 0;
-handles.metricdata.Vmax  = 0;
+handles.metricdata.tpulse = 30;
+handles.metricdata.Vmax  = 1;
 
 set(handles.tpulse, 'String', handles.metricdata.tpulse);
 set(handles.Vmax,  'String', handles.metricdata.Vmax);
 % set(handles.mass, 'String', 0);
 
 set(handles.unitgroup, 'SelectedObject', handles.english);
-
-% ORIGINAL TEMPLATE
-% set(handles.text4, 'String', 'lb/cu.in');
-% set(handles.text5, 'String', 'cu.in');
-% set(handles.text6, 'String', 'lb');
 
 % Update handles structure
 guidata(handles.figure1, handles);

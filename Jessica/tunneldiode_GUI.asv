@@ -59,6 +59,23 @@ guidata(hObject, handles);
 
 initialize_gui(hObject, handles, false);
 
+% PLOTTING BIFURCATION PLOT
+load Vin;
+load Vout_star;
+axes(handles.axes1)
+plot(Vin_vec,x1star_vec,'bo')
+xlabel('Input voltage (V)')
+ylabel('Fixed points for output voltage')
+title('Bifurcation plot')
+
+axes(handles.axes2)
+xlabel('Time (ns)')
+ylabel('Voltage (V)')
+title('Output voltage plot')
+
+handles.
+
+
 % UIWAIT makes tunneldiode_GUI wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
@@ -95,14 +112,14 @@ function tpulse_Callback(hObject, eventdata, handles)
 
 % Hints: get(hObject,'String') returns contents of tpulse as text
 %        str2double(get(hObject,'String')) returns contents of tpulse as a double
-density = str2double(get(hObject, 'String'));
-if isnan(density)
+tpulse = str2double(get(hObject, 'String'));
+if isnan(tpulse)
     set(hObject, 'String', 0);
     errordlg('Input must be a number','Error');
 end
 
 % Save the new tpulse value
-handles.metricdata.density = density;
+handles.metricdata.tpulse = tpulse;
 guidata(hObject,handles)
 
 % --- Executes during object creation, after setting all properties.
@@ -142,8 +159,21 @@ function calculate_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-mass = handles.metricdata.density * handles.metricdata.Vmax;
-set(handles.mass, 'String', mass);
+% Plotting the Phase portrait with Simulink
+assignin('base','tpulse',tpulse);
+assignin('base','Vmax',Vmax);
+
+tspan=50;
+tstep=0.01;
+t_output=[0:tstep:tspan];
+options=simset('Solver','ode45');
+
+[t, y]=sim('tunneldiode_sim',t_output);
+Vout= y(:,1);
+I_L= y(:,2);
+plot(t,Vout)
+
+
 
 % --- Executes on button press in reset.
 function reset_Callback(hObject, eventdata, handles)
@@ -178,18 +208,14 @@ if isfield(handles, 'metricdata') && ~isreset
     return;
 end
 
-handles.metricdata.density = 0;
+handles.metricdata.tpulse = 0;
 handles.metricdata.Vmax  = 0;
 
-set(handles.tpulse, 'String', handles.metricdata.density);
+set(handles.tpulse, 'String', handles.metricdata.tpulse);
 set(handles.Vmax,  'String', handles.metricdata.Vmax);
-set(handles.mass, 'String', 0);
+% set(handles.mass, 'String', 0);
 
 set(handles.unitgroup, 'SelectedObject', handles.english);
-
-set(handles.text4, 'String', 'lb/cu.in');
-set(handles.text5, 'String', 'cu.in');
-set(handles.text6, 'String', 'lb');
 
 % Update handles structure
 guidata(handles.figure1, handles);
