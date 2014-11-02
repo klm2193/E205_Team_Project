@@ -20,7 +20,7 @@ tpulse=30;
 
 % yVec=[];
 % for Vmax= [0:0.1:20]
-    tspan=50; t_output=[0:0.01:tspan];
+%     tspan=50; t_output=[0:0.01:tspan];
     [t, y]=sim('tunneldiode_sim',t_output);
 %     yVec=[yVec y];
 % end
