@@ -131,7 +131,7 @@ assignin('base', 'R', R);
 assignin('base', 'L', L);
 assignin('base', 'C', C);
 
-tspan = tpulse*1.5; % ns
+tspan = tpulse*1.5 + 20 * (tpulse < 20); % ns
 t_output=[0:0.01:tspan];
 [t, x, y] = sim('tunnelDiodeModel', t_output);
 
