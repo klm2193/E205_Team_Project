@@ -44,11 +44,17 @@ x1Vec=[];
 for Vin= voltages
     eqn2= (Vin-x2*R-x1)/L;
     [x1_star,x2_star]=solve(eqn1,eqn2);
-    x1Vec= [x1Vec x1_star];
+%     x1Vec= [x1Vec x1_star];
+    for i=1:length(x1_star)
+        if imag(x1_star(i))==0
+            plot(Vin,x1_star(i),'bo')
+            hold on;
+        end
+    end
 end
 
 
-plot(voltages,x1Vec,'o')
-xlabel('Input voltages (V)')
+% plot(voltages,x1Vec,'o')
+xlabel('Input voltage (V)')
 ylabel('Fixed points for output voltage')
 title('Bifurcation plot')
