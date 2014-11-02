@@ -58,25 +58,6 @@ handles.output = hObject;
 % Update handles structure
 guidata(hObject, handles);
 
-axes(handles.axes1);
-title('Output Voltage vs. Time')
-xlabel('t (ns)');
-ylabel('Vout (V)');
-
-axes(handles.axes2);
-title('Bifurcation Plot of x_1^* (Vout) vs. Vin')
-xlabel('Vin (V)');
-ylabel('x_1^*');
-axis(1*[0 2 0 1])
-
-VinValues = importdata('VinValues.mat');
-x1Values = importdata('x1Values.mat');
-
-plot(VinValues, x1Values, 'mo')
-
-% Choose default command line output for vdpolgui_extras
-handles.output = hObject;
-
 % UIWAIT makes tunnelDiodeGUI wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
@@ -98,6 +79,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+<<<<<<< HEAD
 % clear plots
 cla;
 
@@ -148,6 +130,8 @@ title('Output Voltage vs. Time')
 xlabel('t (ns)');
 ylabel('Vout (V)');
 
+=======
+>>>>>>> parent of aecedba... GUI Works!
 
 
 function Vmax_Callback(hObject, eventdata, handles)
