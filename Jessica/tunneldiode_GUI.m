@@ -198,22 +198,6 @@ function reset_Callback(hObject, eventdata, handles)
 initialize_gui(gcbf, handles, true);
 cla
 
-% --- Executes when selected object changed in unitgroup.
-function unitgroup_SelectionChangeFcn(hObject, eventdata, handles)
-% hObject    handle to the selected object in unitgroup 
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-if (hObject == handles.english)
-    set(handles.text4, 'String', 'lb/cu.in');
-    set(handles.text5, 'String', 'cu.in');
-    set(handles.text6, 'String', 'lb');
-else
-    set(handles.text4, 'String', 'kg/cu.m');
-    set(handles.text5, 'String', 'cu.m');
-    set(handles.text6, 'String', 'kg');
-end
-
 % --------------------------------------------------------------------
 function initialize_gui(fig_handle, handles, isreset)
 % If the metricdata field is present and the reset flag is false, it means
@@ -228,9 +212,6 @@ handles.metricdata.Vmax  = 1;
 
 set(handles.tpulse, 'String', handles.metricdata.tpulse);
 set(handles.Vmax,  'String', handles.metricdata.Vmax);
-% set(handles.mass, 'String', 0);
-
-% set(handles.unitgroup, 'SelectedObject', handles.english);
 
 % Update handles structure
 guidata(handles.figure1, handles);
