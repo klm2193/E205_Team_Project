@@ -8,7 +8,7 @@ L= 5;%5e-6;    % henries
 %10 nanoseconds rise
 % Variables that will be controlled in the GUI
 tpulse=30;
-% Vmax=1;
+Vmax=1;
 % 
 % t= [0:.1:5];
 
@@ -28,14 +28,14 @@ tpulse=30;
 % legend('Voltage','Current')
 % xlabel('Time (ns)')
 
-Vout= yout(:,1);
-I_L= yout(:,2);
+Vout= y(:,1);
+I_L= y(:,2);
 
 % x1 is vout, x2 is I
-Vd=Vout
+Vd=Vout;
 
 syms x1 x2
-Id= 17.76*Vd-103.79*(Vd^2)+229.62*(Vd^3)-226.31*(Vd^4)+83.72*(Vd^5);
+Id= 17.76*x1-103.79*(x1^2)+229.62*(x1^3)-226.31*(x1^4)+83.72*(x1^5);
 eqn1= (x2-Id)/C;
 eqn2= (Vin-x2*R-x1)/L;
 
