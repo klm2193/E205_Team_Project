@@ -21,7 +21,8 @@ x1Vals = [];
 
 hold on
 
-for Vmax = 0:0.01:2
+%for Vmax = 0:0.01:2
+Vmax = 1
     clear x1
     clear x2
     syms x1 x2
@@ -66,7 +67,12 @@ for Vmax = 0:0.01:2
         x1Vals = [x1Vals x1_star(5)];
     end
     
+    J = jacobian([eqn1; eqn2], [x1 x2])
+    eig(J)
+    x1_star
+    %x1 = x1_star(1); y = y_star(2); double(subs(eig(J)))
+    
     %x1_starVals = [x1_starVals x1_star];
-end
+%end
 
 %plot(Vin, x1_starVals(1,:), 'bo');%, Vin, x1_starVals(2,:), 'go', Vin, x1_starVals(3,:), 'bo')
