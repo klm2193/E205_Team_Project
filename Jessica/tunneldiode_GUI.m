@@ -102,7 +102,7 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 
-
+%delete later
 
 function tpulse_Callback(hObject, eventdata, handles)
 % hObject    handle to tpulse (see GCBO)
