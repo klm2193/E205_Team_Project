@@ -15,14 +15,18 @@ tspan = 50; % ns
 t_output=[0:0.1:tspan];
 %Vin = Vmax * (t_output < tpulse) + 0 * (t_output > tpulse);
 
-VinVals = [];
-x1Vals = [];
+VinVals1 = [];
+x1Vals1 = [];
+VinVals2 = [];
+x1Vals2 = [];
+VinVals3 = [];
+x1Vals3 = [];
 
 
 hold on
 
-%for Vmax = 0:0.01:2
-Vmax = 1
+for Vmax = 0:0.01:2.5
+% Vmax = 1
     clear x1
     clear x2
     syms x1 x2
@@ -39,40 +43,40 @@ Vmax = 1
     
     if (imag(x1_star(1)) == 0)
         plot(Vmax, x1_star(1), 'mo')
-        VinVals = [VinVals Vmax];
-        x1Vals = [x1Vals x1_star(1)];
+        VinVals1 = [VinVals1 Vmax];
+        x1Vals1 = [x1Vals1 x1_star(1)];
     end
     
     if (imag(x1_star(2)) == 0)
         plot(Vmax, x1_star(2), 'co')
-        VinVals = [VinVals Vmax];
-        x1Vals = [x1Vals x1_star(2)];
+        VinVals2 = [VinVals2 Vmax];
+        x1Vals2 = [x1Vals2 x1_star(2)];
     end
     
     if (imag(x1_star(3)) == 0)
         plot(Vmax, x1_star(3), 'bo')
-        VinVals = [VinVals Vmax];
-        x1Vals = [x1Vals x1_star(3)];
+        VinVals3 = [VinVals3 Vmax];
+        x1Vals3 = [x1Vals3 x1_star(3)];
     end
     
-    if (imag(x1_star(4)) == 0)
-        plot(Vmax, x1_star(4), 'go')
-        VinVals = [VinVals Vmax];
-        x1Vals = [x1Vals x1_star(4)];
-    end
+%     if (imag(x1_star(4)) == 0)
+%         plot(Vmax, x1_star(4), 'go')
+%         VinVals = [VinVals Vmax];
+%         x1Vals = [x1Vals x1_star(4)];
+%     end
     
-    if (imag(x1_star(5)) == 0)
-        plot(Vmax, x1_star(5), 'ro')
-        VinVals = [VinVals Vmax];
-        x1Vals = [x1Vals x1_star(5)];
-    end
+%     if (imag(x1_star(5)) == 0)
+%         plot(Vmax, x1_star(5), 'ro')
+%         VinVals = [VinVals Vmax];
+%         x1Vals = [x1Vals x1_star(5)];
+%     end
     
-    J = jacobian([eqn1; eqn2], [x1 x2])
-    eig(J)
-    x1_star
+%     J = jacobian([eqn1; eqn2], [x1 x2])
+%     eig(J)
+%     x1_star
     %x1 = x1_star(1); y = y_star(2); double(subs(eig(J)))
     
     %x1_starVals = [x1_starVals x1_star];
-%end
+end
 
 %plot(Vin, x1_starVals(1,:), 'bo');%, Vin, x1_starVals(2,:), 'go', Vin, x1_starVals(3,:), 'bo')

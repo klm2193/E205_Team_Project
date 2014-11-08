@@ -69,10 +69,15 @@ xlabel('Vin (V)');
 ylabel('x_1^*');
 axis(1*[0 2 0 1])
 
-VinValues = importdata('VinValues.mat');
-x1Values = importdata('x1Values.mat');
+VinValues1 = importdata('VinValues1.mat');
+x1Values1 = importdata('x1Values1.mat');
+VinValues2 = importdata('VinValues2.mat');
+x1Values2 = importdata('x1Values2.mat');
+VinValues3 = importdata('VinValues3.mat');
+x1Values3 = importdata('x1Values3.mat');
 
-plot(VinValues, x1Values, 'mo')
+plot(VinValues1, x1Values1, 'mo', VinValues2, x1Values2, 'co',...
+    VinValues3, x1Values3, 'bo')
 
 % Choose default command line output for vdpolgui_extras
 handles.output = hObject;
@@ -105,11 +110,15 @@ cla;
 guidata(hObject, handles);
 
 % plot bifurcation plot
-VinValues = importdata('VinValues.mat');
-x1Values = importdata('x1Values.mat');
-
+VinValues1 = importdata('VinValues1.mat');
+x1Values1 = importdata('x1Values1.mat');
+VinValues2 = importdata('VinValues2.mat');
+x1Values2 = importdata('x1Values2.mat');
+VinValues3 = importdata('VinValues3.mat');
+x1Values3 = importdata('x1Values3.mat');
 axes(handles.axes2);
-plot(VinValues, x1Values, 'mo')
+plot(VinValues1, x1Values1, 'mo', VinValues2, x1Values2, 'co',...
+    VinValues3, x1Values3, 'bo')
 title('Bifurcation Plot of x_1^* (Vout) vs. Vin')
 xlabel('Vin (V)');
 ylabel('x_1^*');
