@@ -67,7 +67,7 @@ axes(handles.axes2);
 title('Bifurcation Plot of x_1^* (Vout) vs. Vin')
 xlabel('Vin (V)');
 ylabel('x_1^*');
-axis(1*[0 2 0 1])
+axis(1*[0 2.5 0 1])
 
 VinValues1 = importdata('VinValues1.mat');
 x1Values1 = importdata('x1Values1.mat');
@@ -127,7 +127,7 @@ plot(VinValues1, x1Values1, 'mo', VinValues2, x1Values2, 'co',...
 title('Bifurcation Plot of x_1^* (Vout) vs. Vin')
 xlabel('Vin (V)');
 ylabel('x_1^*');
-axis(1*[0 2 0 1])
+axis(1*[0 2.5 0 1])
 
 % get input parameters
 R = 1.5; % kOhm
