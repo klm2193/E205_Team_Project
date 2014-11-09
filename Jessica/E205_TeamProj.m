@@ -11,8 +11,26 @@ tpulse=30;
 Vmax=1;
 tspan=50; t_output=[0:0.01:tspan];
 [t, y]=sim('tunneldiode_sim',t_output);
-Vout= y(:,1);
-I_L= y(:,2);
+Vout_before= y(:,1);
+
+tpulse=30;
+Vmax=5;
+tspan=50; t_output=[0:0.01:tspan];
+[t, y]=sim('tunneldiode_sim',t_output);
+Vout_after=y(:,1);
+
+subplot(2,1,1)
+plot(t,Vout_before(:,1))
+ylabel('Voltage (V)')
+title('Before bifurcation, V_{max} = 1 V')
+grid on
+
+subplot(2,1,2)
+plot(t,Vout_after)
+ylabel('Voltage (V)')
+title('After bifurcation, V_{max} = 5 V')
+xlabel('Time (ns)')
+grid on
 
 % tpulse3d=[0:.1:100];
 % Vmax3d=[0:.1:4];
@@ -24,27 +42,27 @@ I_L= y(:,2);
 %     end
 % end
         
-% x1 is vout, x2 is I
-syms x1 x2
-Id= 17.76*x1-103.79*(x1^2)+229.62*(x1^3)-226.31*(x1^4)+83.72*(x1^5);
-eqn1= (x2-Id)/C;
-
-x1star_vec=[];
-Vin_vec=[];
-voltages= [0:.1:2.5];
-for Vin= voltages
-    eqn2= (Vin-x2*R-x1)/L;
-    [x1_star,x2_star]=solve(eqn1,eqn2);
-    for i=1:length(x1_star)
-        if imag(x1_star(i))==0
-            x1star_vec=[x1star_vec x1_star(i)];
-            Vin_vec=[Vin_vec,Vin];
-            plot(Vin,x1_star(i),'bo')
-            hold on;
-        end
-    end
-end
-
-xlabel('Input voltage (V)')
-ylabel('Fixed points for output voltage')
-title('Bifurcation plot')
+% % x1 is vout, x2 is I
+% syms x1 x2
+% Id= 17.76*x1-103.79*(x1^2)+229.62*(x1^3)-226.31*(x1^4)+83.72*(x1^5);
+% eqn1= (x2-Id)/C;
+% 
+% x1star_vec=[];
+% Vin_vec=[];
+% voltages= [0:.1:2.5];
+% for Vin= voltages
+%     eqn2= (Vin-x2*R-x1)/L;
+%     [x1_star,x2_star]=solve(eqn1,eqn2);
+%     for i=1:length(x1_star)
+%         if imag(x1_star(i))==0
+%             x1star_vec=[x1star_vec x1_star(i)];
+%             Vin_vec=[Vin_vec,Vin];
+%             plot(Vin,x1_star(i),'bo')
+%             hold on;
+%         end
+%     end
+% end
+% 
+% xlabel('Input voltage (V)')
+% ylabel('Fixed points for output voltage')
+% title('Bifurcation plot')

@@ -8,11 +8,15 @@ L= 5;%5e-6;    % henries
 %10 nanoseconds rise
 % Variables that will be controlled in the GUI
 tpulse=30;
-Vmax=1;
+Vmax=5;
 tspan=50; t_output=[0:0.01:tspan];
 [t, y]=sim('tunneldiode_sim',t_output);
 Vout= y(:,1);
 I_L= y(:,2);
+
+subplot(2,1,1)
+plot(t,y(:,1))
+
 
 % tpulse3d=[0:.1:100];
 % Vmax3d=[0:.1:4];
@@ -31,7 +35,7 @@ I_L= y(:,2);
 % 
 % x1star_vec=[];
 % Vin_vec=[];
-% voltages= [0:.01:2.5];
+% voltages= [0:.1:2.5];
 % for Vin= voltages
 %     eqn2= (Vin-x2*R-x1)/L;
 %     [x1_star,x2_star]=solve(eqn1,eqn2);
