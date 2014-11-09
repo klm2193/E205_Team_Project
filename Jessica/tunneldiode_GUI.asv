@@ -199,14 +199,14 @@ options=simset('Solver','ode45');
 Vout= y(:,1);
 I_L= y(:,2);
 axes(handles.axes2)
-plot(t,Vout,'LineWidth',2)
+plot(t,Vout)
 xlabel('Time (ns)')
 ylabel('Voltage (V)')
 title('Output voltage plot')
 grid on
 
 axes(handles.axes3)
-plot(t_output,Vmax*(tpulse>t_output),'LineWidth',2)
+plot(t_output,Vmax*(tpulse>t_output))
 axis(1*[0 tspan 0 Vmax+0.1])
 xlabel('Time (ns)')
 ylabel('Voltage(V)')
