@@ -62,6 +62,7 @@ axes(handles.axes1);
 title('Output Voltage vs. Time')
 xlabel('t (ns)');
 ylabel('Vout (V)');
+grid on
 
 axes(handles.axes2);
 title('Bifurcation Plot of x_1^* (Vout) vs. Vin')
@@ -78,11 +79,13 @@ x1Values3 = importdata('x1Values3.mat');
 
 plot(VinValues1, x1Values1, 'mo', VinValues2, x1Values2, 'co',...
     VinValues3, x1Values3, 'bo')
+grid on
 
 axes(handles.axes3);
 title('Input Voltage vs. Time')
 xlabel('t (ns)');
 ylabel('Vin (V)');
+grid on
 
 % Choose default command line output for vdpolgui_extras
 handles.output = hObject;
@@ -128,6 +131,7 @@ title('Bifurcation Plot of x_1^* (Vout) vs. Vin')
 xlabel('Vin (V)');
 ylabel('x_1^*');
 axis(1*[0 2.5 0 1])
+grid on
 
 % get input parameters
 R = 1.5; % kOhm
@@ -155,6 +159,7 @@ plot(t, y(:,1))
 title('Output Voltage vs. Time')
 xlabel('t (ns)');
 ylabel('Vout (V)');
+grid on
 
 % plot Vin
 axes(handles.axes3);
@@ -163,6 +168,7 @@ title('Input Voltage vs. Time')
 xlabel('t (ns)');
 ylabel('Vin (V)');
 axis(1*[0 tspan 0 Vmax+0.1])
+grid on
 
 
 function Vmax_Callback(hObject, eventdata, handles)
