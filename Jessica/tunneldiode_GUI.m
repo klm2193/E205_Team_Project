@@ -68,11 +68,17 @@ plot(Vin_vec,x1star_vec,'bo')
 xlabel('Input voltage (V)')
 ylabel('Fixed points for output voltage')
 title('Bifurcation plot')
+grid on
 
 axes(handles.axes2)
 xlabel('Time (ns)')
 ylabel('Voltage (V)')
 title('Output voltage plot')
+
+axes(handles.axes3)
+xlabel('Time (ns)')
+ylabel('Voltage(V)')
+title('Input Votlage plot')
 
 
 % UIWAIT makes tunneldiode_GUI wait for user response (see UIRESUME)
@@ -158,7 +164,7 @@ function calculate_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Plotting the Phase portrait with Simulink
+% Plotting the time vs voltage plot using Simulink
 tpulse=get(handles.tpulse,'String');
 tpulse=str2double(tpulse);
 Vmax=get(handles.Vmax,'String');
@@ -182,10 +188,20 @@ options=simset('Solver','ode45');
 [t, y]=sim('tunneldiode_sim',t_output);
 Vout= y(:,1);
 I_L= y(:,2);
+axes(handles.axes2)
 plot(t,Vout)
 xlabel('Time (ns)')
 ylabel('Voltage (V)')
 title('Output voltage plot')
+grid on
+
+axes(handles.axes3)
+plot(t_output,Vmax*(tpulse>t_output))
+axis(1*[0 tspan 0 Vmax+0.1])
+xlabel('Time (ns)')
+ylabel('Voltage(V)')
+title('Input Votlage plot')
+grid on
 
 
 
@@ -196,6 +212,9 @@ function reset_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 initialize_gui(gcbf, handles, true);
+axes(handles.axes2)
+cla
+axes(handles.axes3)
 cla
 
 % --------------------------------------------------------------------
