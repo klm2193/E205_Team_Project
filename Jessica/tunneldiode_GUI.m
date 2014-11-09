@@ -90,6 +90,8 @@ xlabel('Time (ns)')
 ylabel('Voltage(V)')
 title('Input Votlage plot')
 
+axes(handles.axes4)
+imshow('circuit.png')
 
 % UIWAIT makes tunneldiode_GUI wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
