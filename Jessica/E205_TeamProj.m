@@ -7,14 +7,14 @@ L= 5;%5e-6;    % henries
 
 %10 nanoseconds rise
 % Variables that will be controlled in the GUI
-tpulse=30;
-Vmax=1;
+tpulse=40;
+Vmax=1.64;
 tspan=50; t_output=[0:0.01:tspan];
 [t, y]=sim('tunneldiode_sim',t_output);
 Vout_before= y(:,1);
 
-tpulse=30;
-Vmax=5;
+tpulse=40;
+Vmax=1.65;
 tspan=50; t_output=[0:0.01:tspan];
 [t, y]=sim('tunneldiode_sim',t_output);
 Vout_after=y(:,1);
@@ -22,13 +22,13 @@ Vout_after=y(:,1);
 subplot(2,1,1)
 plot(t,Vout_before(:,1))
 ylabel('Voltage (V)')
-title('Before bifurcation, V_{max} = 1 V')
+title('V_{max} = 1.64 V')
 grid on
 
 subplot(2,1,2)
 plot(t,Vout_after)
 ylabel('Voltage (V)')
-title('After bifurcation, V_{max} = 5 V')
+title('V_{max} = 1.65 V')
 xlabel('Time (ns)')
 grid on
 
